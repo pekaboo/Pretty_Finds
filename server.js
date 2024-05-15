@@ -9,8 +9,9 @@ const mongoose = require('mongoose')
 
 //   })
 
-const connectDB = mongoose.connect("mongodb+srv://gopikamanoj008:NbNYDryNDbibREzp@pretty-finds-db.8flurl6.mongodb.net/?retryWrites=true&w=majority")
-  .then(() => {
+// const connectDB = mongoose.connect("mongodb+srv://gopikamanoj008:NbNYDryNDbibREzp@pretty-finds-db.8flurl6.mongodb.net/?retryWrites=true&w=majority")
+const connectDB = mongoose.connect("mongodb://localhost:27017/mydatabase")
+.then(() => {
     console.log("connected");
   })
   .catch((err) => {
@@ -54,6 +55,11 @@ app.use(express.static("public"))
 app.use(morgan("dev"))
 app.use('/', userRoute)
 app.use('/', adminRoute)
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something went wrong!')
+})
 
 // Start the server
 // const port = process.env.PORT || 3000;
