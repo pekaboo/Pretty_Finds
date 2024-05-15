@@ -100,6 +100,11 @@ adminRouter.get("/banners",adminBannerController.loadBanners)
 adminRouter.get('/addBanners',adminBannerController.loadAddBanners)
 adminRouter.post('/addBanner',adminBannerController.addBanners)
 
-
+// 否则  404
+adminRouter.get("*", (req, res) => {
+  res.status(404).render("page-404"
+  // ,{code:"404",message:"Page Not Found"}
+);
+});
 
 module.exports = adminRouter;
