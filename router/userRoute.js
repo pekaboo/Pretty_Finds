@@ -25,6 +25,7 @@ const razorpay = new Razorpay({
 
 //getting landing page
 userRouter.get("/", userControllers.landing);
+userRouter.get("/index", userControllers.landing);
 //getting login
 userRouter.get("/page-login", userAuth.isLogout, userControllers.login);
 //getting register

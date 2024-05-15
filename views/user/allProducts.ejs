@@ -436,12 +436,14 @@
                                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel"
                                     aria-labelledby="tab-one">
                                     <div class="row product-grid-4">
-                                        <% products.forEach(function(product) { %>
+                                        <% products.forEach(function(product) { 
+                                            console.log('product',product._id); 
+                                            %> 
                                             <div class="col-lg-3 col-md-4 col-sm-6">
                                                 <div class="product-cart-wrap mb-30 ">
                                                     <div class="product-img-action-wrap">
                                                         <div class="product-img product-img-zoom">
-                                                            <a href="/singleProduct/<%= product.id %>">
+                                                            <a href="/singleProduct/<%= product._id %>">
                                                                 <% if (product.image && product.image[0] &&
                                                                     product.image[0].url) { %>
                                                                     <img src="/uploads/<%= product.image[0].url %>"

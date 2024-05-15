@@ -37,7 +37,10 @@ const server = http.createServer(app);
 const userRoute = require('./router/userRoute')
 const adminRoute = require('./router/adminRoute')
 
-
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something went wrong!')
+})
 // Define a route for the root URL
 app.set("view engine", "ejs");
 app.set('views', [
@@ -56,10 +59,7 @@ app.use(morgan("dev"))
 app.use('/', userRoute)
 app.use('/', adminRoute)
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Something went wrong!')
-})
+
 
 // Start the server
 // const port = process.env.PORT || 3000;

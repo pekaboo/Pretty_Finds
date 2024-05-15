@@ -94,20 +94,22 @@ const verifyUser = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const userData = await User.findOne({ email: email });
+    console.log(userData,email,password)
     const banners=await Banners.find()
 
 
     if (userData) {
       const passwordMatch = await bcrypt.compare(password, userData.password); 
-      console.log(password, userData.password);
-      console.log(passwordMatch,"passwordMatch");
+      // ajun
+      const passwordHash = await bcrypt.hash(password, 10);
+      console.log(password, passwordHash); 
       if(userData.isBlocked===false){
         if (passwordMatch) {
             const products = await AdminProduct.find().limit(8);
     
             const cartCount = await getCartProductCount(req.session.user_id);
     
-            req.session.user_id = userData._id;
+            req.session.user_id = userData._id; 
             console.log("User logged in successfully.");
     
             return res.render("index-3", {
@@ -556,6 +558,7 @@ const resendOTP = async (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        console.log(mailOptions)
         console.log("Email send error: " + error);
         res.status(500).json({ error: "Failed to send OTP" });
       } else {
@@ -666,7 +669,7 @@ const categoryOffer=lipsCareCategory.offerPercentage
 
     // Find products that belong to the 'lips care' category using its ObjectId and apply sorting
     const lipsCareProducts = await AdminProduct.find({
-      category: lipsCareCategory._id,
+      category: lipsCareCategory._id, 
     }).sort(sortCriteria);
 
     if (lipsCareProducts.length === 0) {
@@ -694,12 +697,18 @@ const categoryOffer=lipsCareCategory.offerPercentage
     } 
     // Render the 'lipscare' EJS template and pass the products and sortBy as variables
     // res.render("lipscare", { logged:"user logged",products: productsWithDiscount, sortBy: sortBy ,lipsCareCategory:lipsCareCategory});
-  } catch (error) {
-    res.render("page-404")
+  } 
+  // catch (error) {
+  //   res.render("page-404")
 
+  //   console.log(error);
+  //   res.status(500).send("Internal Server Error");
+  // }
+
+  catch (error) {
     console.log(error);
-    res.status(500).send("Internal Server Error");
-  }
+    res.status(500).render("page-404");
+}
 };
 
 

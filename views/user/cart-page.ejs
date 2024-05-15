@@ -385,10 +385,10 @@
                                 <tbody>
                                     <% if (products.length> 0) { %>
                                         <% for (let i=0; i < products.length; i++) { %>
-                                            
+                                                console.log('products[i]',products[i]);
                                                 <tr>
                                                     <td class="image">
-                                                        <img src="/uploads/<%= products[i].productId.image[0].url %>"
+                                                        <img src="/uploads/<%= products[i].productId?.image[0]?.url %>"
                                                             alt="<%= products[i].name %>">
                                                     </td>
                                                     <td class="product-des">
