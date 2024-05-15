@@ -49,8 +49,9 @@ const landing = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.render("page-404");
-    res.status(500).send("Internal Server Error");
+    // res.render("page-404");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -133,10 +134,10 @@ const verifyUser = async (req, res) => {
       }
        
   } catch (err) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.error(err.message);
-    res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -456,10 +457,10 @@ const loadhome = async (req, res) => {
       res.redirect("/");
     }
   } catch (err) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(err.message);
-    res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -567,10 +568,11 @@ const resendOTP = async (req, res) => {
       }
     });
   } catch (err) {
-    res.render("page-404")
+    // res.render("page-404")
 
-    console.error(err.message);
-    res.status(500).send("Internal Server Error");
+    // console.error(err.message);
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -707,7 +709,7 @@ const categoryOffer=lipsCareCategory.offerPercentage
 
   catch (error) {
     console.log(error);
-    res.status(500).render("page-404");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
 }
 };
 
@@ -830,10 +832,11 @@ const loadBodyCare = async (req, res) => {
     // Render the 'bodycare' EJS template and pass the products and sortBy as variables
     // res.render("bodycare", {logged: "user logged   ", products: productsWithDiscount, sortBy: sortBy });
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -894,10 +897,11 @@ const loadHairCare = async (req, res) => {
     // Render the 'haircare' EJS template and pass the products and sortBy as variables
     // res.render("haircare", {logged: "user logged   ", products: productsWithDiscount, sortBy: sortBy });
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -968,11 +972,12 @@ const loadAllProducts = async (req, res) => {
 
    
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
     // Handle the error appropriately
-    return res.status(500).send("Internal Server Error");
+    // return res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1008,10 +1013,11 @@ const addAddress = async (req, res) => {
       });
     }
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1040,10 +1046,11 @@ const loadMyProfile = async (req, res) => {
       });
     }
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
   
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1058,9 +1065,10 @@ const loadEditProfile = async (req, res) => {
       res.render("edit-profile", { user: userData });
     }
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1091,11 +1099,11 @@ const loadEditAddress = async (req, res) => {
 
     res.render("editAddress", { addresses: address });
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});  }
 };
 
 const editAddress = async (req, res) => {
@@ -1122,11 +1130,12 @@ const editAddress = async (req, res) => {
     // Redirect back to the user account page or any other desired page
     res.redirect("/loadmyaddress");
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.error(error);
     // Handle errors appropriately, e.g., render an error page or provide an error response
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1141,10 +1150,11 @@ const loadmyAddress = async (req, res) => {
       res.status(404).send("User not found");
     }
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1176,11 +1186,12 @@ const deleteAddress = async (req, res) => {
 
     res.redirect("/loadmyaddress"); // Redirect back to the user account page or any other desired page after deleting.
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.error(error);
     // Handle errors appropriately, e.g., render an error page or provide an error response
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1188,9 +1199,10 @@ const loadEnterEmail = async (req, res) => {
   try {
     res.render("email-reset-otp");
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1248,10 +1260,10 @@ const loadForgottPassword = async (req, res) => {
       res.render("enterOTP", { message: "please check the OTP" });
     } 
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1272,10 +1284,10 @@ const resetPassword = async (req, res) => {
     const successMessage = "Password reset successful.";
     res.render("forgott-password", { successMessage });
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
-    res.status(500).json({ message: "Error updating user information" });
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1346,11 +1358,12 @@ if(userId){
 
 
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
     // Handle other errors as needed
-    res.status(500).send("Internal Server Error");
+    // res.status(500).send("Internal Server Error");
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 
@@ -1389,9 +1402,10 @@ const AddToCart = async (req, res) => {
 
 
   } catch (error) {
-    res.render("page-404")
+    // res.render("page-404")
 
     console.log(error);
+    res.render("page-404",{ message:"Internal Server Error:"+error,'code':500});
   }
 };
 

@@ -125,6 +125,13 @@ userRouter.post('/removeFromWishlist/:id',userControllers.removeFromWishlist)
 //banner navigation 
 // userRouter.get('/bannerDetails/:id',userControllers.bannerNavigation)
 
+// 否则  404
+userRouter.get("*", (req, res) => {
+  res.status(404).render("page-404"
+  // ,{code:"404",message:"Page Not Found"}
+);
+});
+
 
 
 

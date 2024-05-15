@@ -53,9 +53,13 @@
     </head>
     <body>
         <div class="error-container">
-            <div class="error-code">500</div>
+
+            <div class="error-code">
+                
+                <%= typeof code !== 'undefined'?code:'404' %>
+            </div>
             <div class="error-message">
-                Internal Server Error
+                <%= typeof message !== 'undefined'?message:'Page Not Found' %> 
             </div>
             <p class="back-to-home">
                 <a href="/">Back to Home</a>
