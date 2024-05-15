@@ -1,3 +1,11 @@
+
+// const CONFIG ={ 
+//   razorpay_key_id: "rzp_test_tNMVjP0jtH4ZlP",
+//   razorpay_key_secret: "4MoJ10O8fIWCAhLIpd",
+//   email_user:"muhzinsidhiq333@gmail.com",
+//   email_pass:"iiue xtwn lkkf jfps",
+// }
+require("dotenv").config()
 const User = require("../model/userModel");
 const AdminProduct = require("../model/productModel");
 const AdminCategory = require("../model/categoryModel");
@@ -13,13 +21,11 @@ const uuid = require("uuid");
 const Banners = require("../model/bannerModel");
 const Wishlist = require("../model/wishListModel");
 
- 
-
 const Razorpay = require("razorpay");
 const { makeRazorpayPayment } = require("../utils/razorypay");
 const razorpay = new Razorpay({
-  key_id: "rzp_test_tNMVjP0jtH4ZlP",
-  key_secret: "4MoJ10O8fIWCAhLIpd",
+  key_id: process.env.RAZORPAY_KEY_ID_2,
+  key_secret: process.env.RAZORPAY_KEY_SECRET_2,
 });
 
 const securePassword = async (password) => {
@@ -199,13 +205,13 @@ const productModel = require("../model/productModel");
 //         const transporter = nodemailer.createTransport({
 //           service: "gmail",
 //           auth: {
-//             user: "muhzinsidhiq333@gmail.com",
-//             pass: "iiue xtwn lkkf jfps",
+//             user:process.env.EMAIL_USER,
+//             pass:process.env.EMAIL_PASS,
 //           },
 //         });
   
 //         const mailOptions = {
-//           from: "muhzinsidhiq333@gmail.com",
+//           from:process.env.EMAIL_USER,
 //           to: req.body.email,
 //           subject: "OTP Verification",
 //           text: `Your OTP code is: ${otp}`,
@@ -324,13 +330,13 @@ const userRegister = async (req, res) => {
           const transporter = nodemailer.createTransport({
               service: "gmail",
               auth: {
-                  user: "muhzinsidhiq333@gmail.com",
-                  pass: "iiue xtwn lkkf jfps",
+                  user:process.env.EMAIL_USER,
+                  pass:process.env.EMAIL_PASS,
               },
           });
 
           const mailOptions = {
-              from: "muhzinsidhiq333@gmail.com",
+              from:process.env.EMAIL_USER,
               to: req.body.email,
               subject: "OTP Verification",
               text: `Your OTP code is: ${otp}`,
@@ -545,13 +551,13 @@ const resendOTP = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "muhzinsidhiq333@gmail.com",
-        pass: "iiue xtwn lkkf jfps",
+        user:process.env.EMAIL_USER,
+        pass:process.env.EMAIL_PASS,
       },
     });
 
     const mailOptions = {
-      from: "muhzinsidhiq333@gmail.com",
+      from:process.env.EMAIL_USER,
       to: req.session.userData.email, // Use the email from the user's session
       subject: "Resend OTP Verification",
       text: `Your new OTP code is: ${rotp}`,
@@ -1220,14 +1226,14 @@ const loadEnterOtp = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "muhzinsidhiq333@gmail.com", // Your Gmail address
-        pass: "iiue xtwn lkkf jfps", // Your Gmail password or an app-specific password
+        user:process.env.EMAIL_USER, // Your Gmail address
+        pass:process.env.EMAIL_PASS, // Your Gmail password or an app-specific password
       },
     });
 
     // Create email data
     const mailOptions = {
-      from: "muhzinsidhiq333@gmail.com", // Your Gmail address
+      from:process.env.EMAIL_USER, // Your Gmail address
       to: email, // User's email
       subject: "OTP Verification",
       text: `Your OTP code is: ${cotp}`,

@@ -9,8 +9,9 @@ const mongoose = require('mongoose')
 
 //   })
 
+require("dotenv").config()
 // const connectDB = mongoose.connect("mongodb+srv://gopikamanoj008:NbNYDryNDbibREzp@pretty-finds-db.8flurl6.mongodb.net/?retryWrites=true&w=majority")
-const connectDB = mongoose.connect("mongodb://localhost:27017/mydatabase")
+const connectDB = mongoose.connect(process.env.MONGODB,)
 .then(() => {
     console.log("connected");
   })
@@ -20,7 +21,6 @@ const connectDB = mongoose.connect("mongodb://localhost:27017/mydatabase")
 
   })
 
-require("dotenv").config()
 
 const express = require('express');
 const http = require("http")
@@ -63,7 +63,7 @@ app.use('/', adminRoute)
 
 // Start the server
 // const port = process.env.PORT || 3000;
-const port = process.env.PORT || 3009
+const port = process.env.PORT || 3000
 server.listen(port, () => {
   console.log("Listening to the server on http://localhost:" + port);
 });

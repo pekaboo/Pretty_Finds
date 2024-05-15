@@ -1,20 +1,19 @@
-# 基于 Node 的一个官方镜像，版本 14
-FROM node:14 
+FROM node:16
 
-# 设置工作目录
-WORKDIR /app 
+# Create app directory
+WORKDIR /usr/src/app
 
-# 拷贝 package.json 和 package-lock.json 到 /app
-COPY package*.json ./ 
+# Copy package.json
+COPY package*.json ./
 
-# 在项目根目录下安装项目依赖
-RUN npm install 
+# Install dependencies
+RUN npm install
 
-# 把其他源文件拷贝到工作目录
-COPY . . 
+# Copy all files
+COPY . .
 
-# 让你的应用绑定到这个端口
-EXPOSE 3000 
+# Expose port 3000
+EXPOSE 3000
 
-# CMD 命令在容器启动后执行
-CMD [ "node", "server.js" ] 
+# Run app
+CMD [ "node", "server.js" ]
