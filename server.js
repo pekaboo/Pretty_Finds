@@ -1,22 +1,11 @@
-const mongoose = require('mongoose')
-// const connectDB = mongoose.connect("mongodb://127.0.0.1:27017/PRETTY_FINDS")
-//   .then(() => {
-//     console.log("connected");
-//   })
-//   .catch((err) => {
-
-//     console.log(err);
-
-//   })
-
+const mongoose = require('mongoose') 
 require("dotenv").config()
-// const connectDB = mongoose.connect("mongodb+srv://gopikamanoj008:NbNYDryNDbibREzp@pretty-finds-db.8flurl6.mongodb.net/?retryWrites=true&w=majority")
 const connectDB = mongoose.connect(process.env.MONGODB,)
 .then(() => {
-    console.log("connected");
+    console.log("mongoose connected");
   })
   .catch((err) => {
-
+    console.log("mongoose connect error");
     console.log(err);
 
   })
@@ -43,7 +32,7 @@ app.use(function (err, req, res, next) {
 })
 // Define a route for the root URL
 app.set("view engine", "ejs");
-app.set('views', [
+app.set('views',  [
   path.join(__dirname, 'views', 'admin'),
   path.join(__dirname, 'views', 'user'),
 
@@ -57,12 +46,8 @@ app.use(express.json());
 app.use(express.static("public"))
 app.use(morgan("dev"))
 app.use('/', userRoute)
-app.use('/', adminRoute)
+app.use('/admin', adminRoute)
 
-
-
-// Start the server
-// const port = process.env.PORT || 3000;
 const port = process.env.PORT || 3000
 server.listen(port, () => {
   console.log("Listening to the server on http://localhost:" + port);

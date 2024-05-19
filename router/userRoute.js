@@ -125,14 +125,4 @@ userRouter.post('/removeFromWishlist/:id',userControllers.removeFromWishlist)
 //banner navigation 
 // userRouter.get('/bannerDetails/:id',userControllers.bannerNavigation)
 
-
-
-
-
-
-
-
-
-
 module.exports = userRouter;
-   
